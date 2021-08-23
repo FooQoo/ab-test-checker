@@ -1,0 +1,16 @@
+.result {
+  @apply text-center flex justify-center items-center px-12 space-x-10 w-full;
+  height: 115px;
+}
+
+.result-message {
+  @apply text-center flex justify-center items-center px-12 space-x-2 w-2/3;
+  border: 3px solid var(--color-deep-navy);
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 115px;
+}
+
+.result-icon {
+  font-size: 84px;
+}

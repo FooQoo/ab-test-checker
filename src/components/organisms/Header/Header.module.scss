@@ -1,0 +1,10 @@
+.header {
+  @apply text-center flex items-center px-12 space-x-2 fixed w-full bg-white;
+  font-family: American Typewriter, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  height: 80px;
+  color: var(--color-deep-navy);
+  border-bottom: thin solid black;
+}

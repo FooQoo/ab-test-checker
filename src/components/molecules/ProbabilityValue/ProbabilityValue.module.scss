@@ -1,0 +1,32 @@
+@use 'src/styles/variables' as var;
+
+.p-value {
+  @apply flex items-center my-10 space-x-24;
+  height: 68px;
+}
+
+.p-value-title {
+  @apply flex items-center justify-center h-full;
+  width: 255px;
+  background: var(--color-deep-navy);
+  border-radius: 25px 0 0 25px;
+  font-family: var.$primary-font, var.$secondary-font;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 28px;
+  color: white;
+}
+
+.p-value-item {
+  @apply flex items-center justify-center h-full space-x-20;
+  width: 494px;
+  background: var(--color-alice-blue);
+  border-radius: 0 25px 25px 0;
+  font-family: var.$primary-font, var.$secondary-font;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+}
