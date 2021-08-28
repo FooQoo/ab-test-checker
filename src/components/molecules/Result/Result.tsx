@@ -1,15 +1,14 @@
 import { Icon } from '@iconify/react';
 import type { VFC } from 'react';
-import { useChiState } from 'src/re-ducks/chi/selectors';
-import type { Message } from 'src/re-ducks/chi/type';
+import type { ChiState, Message } from 'src/re-ducks/chi/type';
 import {
   DETERMINED,
   INVALID,
   LISTENING,
   UNDETERMINED,
 } from 'src/re-ducks/chi/type';
+import { getPValue } from 'src/utils/chi';
 
-import { getPValue } from '../../../utils/chi';
 import styles from './Result.module.scss';
 
 const getMessage = (message: Message, isHigherA: boolean) => {
@@ -27,9 +26,7 @@ const getMessage = (message: Message, isHigherA: boolean) => {
   }
 };
 
-export const Result: VFC = () => {
-  const { chi } = useChiState();
-
+export const Result: VFC<ChiState> = (chi) => {
   // P値
   const pValue = getPValue(
     chi.buckets[0].numOfTestUser || 1,

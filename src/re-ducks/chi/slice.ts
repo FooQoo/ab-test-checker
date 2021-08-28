@@ -1,8 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import { defaultBucketSize } from 'src/models/bucket';
 import type { ChiState } from 'src/re-ducks/chi/type';
-
-import { defaultBucketSize } from '../../models/bucket';
 
 const defaultBucket = [...Array(defaultBucketSize)].map(() => {
   return {

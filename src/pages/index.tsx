@@ -10,7 +10,11 @@ import { Layout } from 'src/components/organisms/Layout/Layout';
 import { Table } from 'src/components/organisms/Table/Table';
 import styles from 'src/styles/index.module.scss';
 
+import { useChiState } from '../re-ducks/chi/selectors';
+
 const Top: NextPage = () => {
+  const { chi } = useChiState();
+
   return (
     <Layout>
       <div className={styles.top}>
@@ -18,8 +22,8 @@ const Top: NextPage = () => {
         <Description />
         <Option />
         <Table />
-        <Result />
-        <ProbabilityValue />
+        <Result {...chi} />
+        <ProbabilityValue {...chi} />
       </div>
     </Layout>
   );

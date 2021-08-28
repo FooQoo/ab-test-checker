@@ -1,12 +1,10 @@
 import type { VFC } from 'react';
 
-import { useChiState } from '../../../re-ducks/chi/selectors';
+import type { ChiState } from '../../../re-ducks/chi/type';
 import { getPValue } from '../../../utils/chi';
 import styles from './ProbabilityValue.module.scss';
 
-export const ProbabilityValue: VFC = () => {
-  const { chi } = useChiState();
-
+export const ProbabilityValue: VFC<ChiState> = (chi) => {
   // P値
   const pValue = getPValue(
     chi.buckets[0].numOfTestUser || 1,
