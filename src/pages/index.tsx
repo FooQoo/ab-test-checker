@@ -1,3 +1,5 @@
+import 'modern-css-reset/dist/reset.min.css'; //この行を追加
+
 import type { NextPage } from 'next';
 import { Description } from 'src/components/atoms/Description/Description';
 import { SeparationBar } from 'src/components/atoms/SeparationBar/SeparationBar';
@@ -8,11 +10,7 @@ import { Layout } from 'src/components/organisms/Layout/Layout';
 import { Table } from 'src/components/organisms/Table/Table';
 import styles from 'src/styles/index.module.scss';
 
-import { useChiState } from '../re-ducks/chi/selectors';
-
 const Top: NextPage = () => {
-  const { chi } = useChiState();
-
   return (
     <Layout>
       <div className={styles.top}>
@@ -21,10 +19,7 @@ const Top: NextPage = () => {
         <Option />
         <Table />
         <Result />
-        <ProbabilityValue
-          pValue={chi.pValue === null ? NaN : chi.pValue}
-          level={chi.isFivePercent ? 0.05 : 0.01}
-        />
+        <ProbabilityValue />
       </div>
     </Layout>
   );

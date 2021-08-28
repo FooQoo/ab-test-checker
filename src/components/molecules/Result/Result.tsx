@@ -9,6 +9,7 @@ import {
   UNDETERMINED,
 } from 'src/re-ducks/chi/type';
 
+import { getPValue } from '../../../utils/chi';
 import styles from './Result.module.scss';
 
 const getMessage = (message: Message, isHigherA: boolean) => {
@@ -29,10 +30,26 @@ const getMessage = (message: Message, isHigherA: boolean) => {
 export const Result: VFC = () => {
   const { chi } = useChiState();
 
-  const isUndetermined = chi.message === UNDETERMINED;
+  // P値
+  const pValue = getPValue(
+    chi.buckets[0].numOfTestUser || 1,
+    chi.buckets[1].numOfTestUser || 1,
+    chi.buckets[0].numOfConversionUser || 0,
+    chi.buckets[1].numOfConversionUser || 0
+  );
+
+  const isUndetermined =
+    chi.buckets[0].conversionRate === chi.buckets[1].conversionRate ||
+    pValue >= (chi.isFivePercent ? 0.05 : 0.01);
+
+  const message =
+    chi.buckets[0].conversionRate === chi.buckets[1].conversionRate ||
+    pValue >= (chi.isFivePercent ? 0.05 : 0.01)
+      ? UNDETERMINED
+      : DETERMINED;
 
   const isHigherA =
-    chi.conversionRateForAPattern > chi.conversionRateForBPattern;
+    (chi.buckets[0].conversionRate || 0) > (chi.buckets[1].conversionRate || 0);
 
   return (
     <div className={styles['result']}>
@@ -45,7 +62,7 @@ export const Result: VFC = () => {
         />
       )}
       <p className={styles['result-message']}>
-        {getMessage(chi.message, isHigherA)}
+        {getMessage(message, isHigherA)}
       </p>
     </div>
   );

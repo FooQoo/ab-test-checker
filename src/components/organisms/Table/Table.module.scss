@@ -1,7 +1,11 @@
 @use "src/styles/variables" as var;
 
 .wrapper {
-  @apply grid grid-cols-4 gap-4 w-full my-10 text-center;
+  @apply w-full text-center;
+}
+
+.column {
+  @apply grid grid-cols-4 gap-4 w-full my-5;
 }
 
 .table-header {

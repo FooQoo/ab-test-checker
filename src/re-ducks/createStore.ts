@@ -3,14 +3,20 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import logger from 'redux-logger';
 import { chiSlice, initialState as chiState } from 'src/re-ducks/chi/slice';
+import {
+  initialState as validationState,
+  validationSlice,
+} from 'src/re-ducks/validation/slice';
 
 const rootReducer = combineReducers({
   chi: chiSlice.reducer,
+  validation: validationSlice.reducer,
 });
 
 const preloadedState = () => {
   return {
     chi: chiState,
+    validation: validationState,
   };
 };
 
