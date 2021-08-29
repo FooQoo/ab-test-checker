@@ -1,4 +1,4 @@
-export const defaultBucketSize = 2;
+export const defaultBucketSize = 3;
 
 export interface Bucket {
   numOfTestUser: number | null;

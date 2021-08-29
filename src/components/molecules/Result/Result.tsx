@@ -28,12 +28,7 @@ const getMessage = (message: Message, isHigherA: boolean) => {
 
 export const Result: VFC<ChiState> = (chi) => {
   // P値
-  const pValue = getPValue(
-    chi.buckets[0].numOfTestUser || 1,
-    chi.buckets[1].numOfTestUser || 1,
-    chi.buckets[0].numOfConversionUser || 0,
-    chi.buckets[1].numOfConversionUser || 0
-  );
+  const pValue = getPValue(chi.buckets);
 
   const isUndetermined =
     chi.buckets[0].conversionRate === chi.buckets[1].conversionRate ||

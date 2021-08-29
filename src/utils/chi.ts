@@ -1,23 +1,19 @@
+import type { Bucket } from '../models/bucket';
+
 const ChiSqTest = require('chi-sq-test');
 
-export const getPValue = (
-  numOfTestUserForAPattern: number,
-  numOfTestUserForBPattern: number,
-  numOfConversionUserForAPattern: number,
-  numOfConversionUserForBPattern: number
-) => {
-  const { pValue } = ChiSqTest.independence(
-    [
-      [
-        numOfConversionUserForAPattern,
-        numOfTestUserForAPattern - numOfConversionUserForAPattern,
-      ],
-      [
-        numOfConversionUserForBPattern,
-        numOfTestUserForBPattern - numOfConversionUserForBPattern,
-      ],
-    ],
-    0
-  );
+const DDOF = 0;
+
+export const getPValue = (buckets: Bucket[]) => {
+  const obs = buckets.map((bucket) => {
+    return bucket.numOfConversionUser === null || bucket.numOfTestUser === null
+      ? [0, 0]
+      : [
+          bucket.numOfConversionUser,
+          bucket.numOfTestUser - bucket.numOfConversionUser,
+        ];
+  });
+
+  const { pValue } = ChiSqTest.independence(obs, DDOF);
   return pValue;
 };
